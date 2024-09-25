@@ -1,6 +1,7 @@
 package com.resul.transactionservice.controller;
 
 import com.resul.transactionservice.dto.CreateDepositRequest;
+import com.resul.transactionservice.dto.CreateWithdrawRequest;
 import com.resul.transactionservice.dto.TransactionResponse;
 import com.resul.transactionservice.service.TransactionService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,14 @@ public class TransactionController {
 
 
 
-    @PostMapping
+    @PostMapping("/deposit")
     public ResponseEntity<TransactionResponse> createDepositRequest(@RequestBody CreateDepositRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(transactionService.createDepositTransaction(request));
+    }
+
+    @PostMapping("/withdraw")
+    public ResponseEntity<TransactionResponse> createWithdrawRequest(@RequestBody CreateWithdrawRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(transactionService.createWithdrawTransaction(request));
     }
 
 }

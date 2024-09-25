@@ -4,14 +4,12 @@ import com.resul.transactionservice.dto.AccountDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-
-@FeignClient(name = "account-service", url = "http://localhost:8090/api/v1/accounts")
+@FeignClient(name = "account-service", url = "http://localhost:8093/api/v1/accounts")
 public interface AccountServiceClient {
 
-    @PostMapping()
-    AccountDto getAccountById(Long id);
+    @GetMapping("/{id}")
+    AccountDto getAccountById(@PathVariable Long id);
 
-    @PatchMapping("/api/v1/accounts/{accountId}/balance")
-    void updateBalance(@PathVariable("accountId") Long accountId, @RequestBody BigDecimal amount);
+    @PutMapping("/{accountId}/balance")
+    void updateBalance(@PathVariable("accountId") Long accountId, @RequestBody String amount);
 }

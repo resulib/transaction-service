@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class CreateWithdrawRequest {
     private Long accountId;
-    private AmountRequest amount;
+    private String amount;
+    private String description;
 }

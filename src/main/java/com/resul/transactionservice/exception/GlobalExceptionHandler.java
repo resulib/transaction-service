@@ -15,4 +15,10 @@ public class GlobalExceptionHandler {
         var errorDto = new ErrorDto(e.getMessage(), LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDto);
     }
+
+    @ExceptionHandler(InsufficientFundsException.class)
+    public ResponseEntity<ErrorDto> handleInsufficientFundsException(InsufficientFundsException e) {
+        var errorDto = new ErrorDto(e.getMessage(), LocalDateTime.now());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
+    }
 }
